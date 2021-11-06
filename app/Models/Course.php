@@ -11,13 +11,17 @@ class Course extends Model
 
     protected $guarded = ['id', 'status'];
     protected $withCount = ['students','reviews'];
-    /* Eloquent withCount (): Obtener cantidad de registros relacionados */
-    /*Tenga en cuenta que withCount () funciona tanto con la relación hasMany () como con el segundo nivel de profundidad con hasManyThrough () . */
-    /* se genera students_count  y  reviews_count */
+      /* 
+    Eloquent tiene una función withCount () : ayuda a obtener la cantidad de registros relacionados dentro del objeto principal. 
+    También funciona con dos capas de profundidad, dentro de las relaciones hasManyThrough
+    Eloquent withCount (): Obtiene la cantidad de registros relacionados */
+    /*Tenga en cuenta que withCount () funciona tant */
+
     const BORRADOR = 1;
     const REVISION = 2;
     const PUBLICADO = 3;
 
+    //llamo como rating ejemplo Course::find(2)->rating en HomeController
     public function getRatingAttribute(){
         if($this->reviews_count){
             return round($this->reviews->avg('rating'), 1);
@@ -25,6 +29,20 @@ class Course extends Model
             return 5;
         }
     }
+    //query scopes
+
+    public function scopeCategory($query, $category_id){
+        if($category_id){
+            return $query->where('category_id', $category_id);
+        }
+    }
+
+    public function scopeLevel($query, $level_id){
+        if($level_id){
+            return $query->where('level_id', $level_id);
+        }
+    }
+
 
     public function getRouteKeyName()
     {

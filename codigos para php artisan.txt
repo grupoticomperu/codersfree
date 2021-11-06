@@ -1,0 +1,4 @@
+
+creando el componente
+
+php artisan make:livewire CourseStatus

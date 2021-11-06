@@ -21,4 +21,19 @@ class CourseController extends Controller
                              ->get();
         return view('courses.show', compact('course', 'similares'));
     }
+
+    public function enrolled(Course $course)
+    {
+        //return $course;
+        $course->students()->attach(auth()->user()->id);
+        return redirect()->route('courses.status', $course);
+    }
+
+ /*   public function status(Course $course){
+        return view('courses.status', compact('course'));
+    }*/
+
+
+
+
 }

@@ -26,7 +26,7 @@ class ImageFactory extends Factory
             
             'url' => 'cursos/' . $this->faker->image('public/storage/cursos', 640, 480, null, false)
             //640 ancho y 480 alto
-            //null porque versiones tenia categoria de imagenes
+            //null porque versiones anteriores tenia categoria de imagenes
             //true almacena de esta forma: public/storage/cursos/image.jpg
             //false almacena: image.jpg
 

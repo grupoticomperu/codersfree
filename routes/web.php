@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
+use App\Http\Livewire\CourseStatus;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +18,7 @@ use App\Http\Controllers\CourseController;
 */
 
 Route::get('/', HomeController::class)->name('home');
+//HomeController no necesita poner un metodo porque tiene al unico metodo llamado __invoque
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -23,3 +27,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('cursos', [CourseController::class, 'index'])->name('courses.index');
 
 Route::get('cursos/{course}', [CourseController::class, 'show'])->name('courses.show');
+
+Route::post('courses/{course}/enrolled', [CourseController::class, 'enrolled'])->middleware('auth')->name('course.enrolled');
+
+//Route::get('course-status/{course}', [CourseController::class, 'status'])->name('courses.status');
+Route::get('course-status/{course}', CourseStatus::class)->name('courses.status');
+
