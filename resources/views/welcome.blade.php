@@ -1,5 +1,4 @@
 <x-app-layout>
-
     <!-- Portada -->
     <section class="bg-cover" style="background-image:url({{asset('img/home/people-2557399_1920.jpg')}})">
         <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 py-36">
@@ -8,6 +7,7 @@
                 <p class="mt-2 mb-4 text-lg text-white">En TICOM encontrarás cursos, manuales y artículos que te ayudarán a convertirte en un profesional del desarrollador web</p>
 
                   @livewire('search')
+                  
 
             </div>          
         </div>
@@ -82,7 +82,9 @@
 
         <div class="grid px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
             @foreach ($courses as $course)
+
                  <x-course-card :course="$course" />
+                 
             @endforeach
 
         </div>

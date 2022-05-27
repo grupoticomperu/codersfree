@@ -9,6 +9,7 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
+        //administra solo una ruta
         //$courses = Course::all();
         $courses = Course::where('status','3')->latest('id')->get()->take(12);
        // return $courses;
